@@ -35,12 +35,16 @@ def fetchDoc():
             # payloads are parameters to be passed in request url in browsers
             payload = {'pagesize': 50, 'sort': sorts[sort]}
             # fetching document
-            stackDocReq = requests.get(url, params=payload)
+            user_agent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36'
+            headers = {'User-Agent': user_agent}
+            stackDocReq = requests.get(url, params=payload, headers=headers)
         else:
             payload = {'pagesize': 50, 'tab': 'relevance'}
             url = f"https://stackoverflow.com/search"
+            user_agent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36'
+            headers = {'User-Agent': user_agent}
             payload = {'tab': 'relevance', 'q': userTag}
-            stackDocReq = requests.get(url, params=payload)
+            stackDocReq = requests.get(url, params=payload, headers=headers)
         print()
 
         if stackDocReq:
